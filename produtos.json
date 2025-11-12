@@ -14,7 +14,7 @@
     "id": "p02",
     "name": "Kit Definitivo para Jogadores de DND",
     "img": "imagens/Kit Definitivo para Jogadores de DND.webp",
-    "desc": "Portas com rastreadores para tudo o que você precisa para uma sessão completa de D&D, sem ficha de personagem extra, tudo pronto para usar, configurado em 6 segundos. Possui na porta Esquerda: Atributos principais (FOR, CON, DES, SAB, INT, CAR), PV (Máx, temp e Atual), Iniciativa, CA e Bônus de Proficiência, Testes de Morte (sucessos e falhas), Contador de Dados de Vida, CD de Resistência a Magia e rastreadores de Espaços de Magia. Porta Direita: Todas as 18 Perícias necessárias para fazer qualquer teste",
+    "desc": "Portas com rastreadores para tudo o que você precisa para uma sessão completa de D&D, sem ficha de personagem extra, tudo pronto para usar, configurado em 6 segundos.",
     "size": "10cm",
     "material": "pla",
     "category": "RPG",
@@ -31,5 +31,16 @@
     "category": "MTG",
     "tags": ["mtg", "deckbox"],
     "price": "R$70.00"
+  },
+  {
+    "id": "p04",
+    "name": "Conjunto de dados - D20, D12, D10, D8, D6, D4",
+    "img": "imagens/Conjunto de dados - D20, D12, D10, D8, D6, D4.webp",
+    "desc": "Escolha o dado (d20, d12, d10, d8, d6, d4), escolha o tipo de gráfico (em relevo ou nivelado) e escolha a cor que mais combina com você.",
+    "size": "30 mm",
+    "material": "pla",
+    "category": "RPG",
+    "tags": ["rpg", "dado", "mtg"],
+    "price": "R$2,50 a unidade ou R$12,00 o conjunto"
   }
 ]
