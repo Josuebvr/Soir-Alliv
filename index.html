@@ -50,12 +50,31 @@
     main{display:grid;gap:30px}
 
     .hero{
-      display:flex;gap:24px;align-items:center;
-      background:#fff;border-radius:var(--radius);
-      padding:26px;box-shadow:0 4px 20px rgba(0,0,0,0.08);
+      background:#fff;
+      border-radius:var(--radius);
+      padding:36px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.08);
+      text-align:center;
     }
-    .hero h2{margin:0;font-size:26px;}
-    .hero p{color:var(--muted);margin-top:10px}
+    .hero h2{
+      margin:0;
+      font-size:26px;
+    }
+    .hero p{
+      color:var(--muted);
+      margin-top:12px;
+      font-size:16px;
+      max-width:720px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .actions{
+      margin-top:22px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
     .btn{
       display:inline-flex;align-items:center;gap:8px;
       padding:10px 16px;border-radius:12px;border:0;cursor:pointer;
@@ -63,7 +82,6 @@
     }
     .btn.primary{background:var(--accent);color:#fff;}
     .btn.secondary{background:#fff;border:1px solid var(--accent);color:var(--accent);}
-    .actions{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;}
 
     .filters{
       display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px;align-items:center;
@@ -108,7 +126,6 @@
     .modal .btn{margin-top:8px;}
 
     @media(max-width:640px){
-      .hero{flex-direction:column;}
       .filters{flex-direction:column;align-items:stretch;}
     }
   </style>
@@ -130,16 +147,39 @@
 
     <main>
       <section class="hero">
-        <div class="intro">
-          <h2>Modelos 3D com alma de aventura.</h2>
-          <p>Miniaturas, objetos e acessórios inspirados em mundos de fantasia e RPG. Impressos com precisão e acabamento profissional.</p>
-          <div class="actions">
-            <button class="btn primary" id="ctaCatalog">Ver Catálogo</button>
-            <a class="btn secondary" href="https://wa.me/5519988822112" target="_blank">Falar no WhatsApp</a>
-          </div>
-        </div>
-        <div>
-          <img src="https://picsum.photos/seed/soirHero/420/280" alt="Exemplo de impressão 3D">
+        <h2>Seja muito bem-vindo a Soir Alliv</h2>
+        <p>
+        É um prazer recebê-lo em nosso espaço criativo. Aqui, atendemos suas necessidades através da impressão 3D, com atenção a cada detalhe e compromisso com a qualidade.
+        </p>
+
+        <br>
+
+        <h3>Modelos 3D personalizáveis</h3>
+        <p>
+        Todos os modelos disponíveis no site podem ser personalizados conforme sua preferência.  
+        Você pode ajustar cores, tamanhos, detalhes e até incluir e editar textos gravados, entre em contato conosco pelo WhatsApp e deixaremos cada peça exatamente do seu jeito.
+        </p>
+
+        <br>
+
+        <h3>Encomendas sob medida</h3>
+        <p>
+        Também realizamos criações exclusivas que não estão listadas no site.  
+        Caso deseje um modelo totalmente novo ou específico, entre em contato conosco pelo WhatsApp e descreva sua ideia.  
+        Desenvolveremos o projeto especialmente para você.
+        </p>
+
+        <br>
+
+        <h3>Variação de valores</h3>
+        <p>
+        Alterações nos produtos, como tamanho, cor ou tipo de material, podem gerar pequenas variações no valor final.  
+        Isso ocorre devido à diferença no consumo de filamento e no material utilizado em cada peça.
+        </p>
+
+        <div class="actions">
+          <button class="btn primary" id="ctaCatalog">Ver Catálogo</button>
+          <a class="btn secondary" href="https://wa.me/5519988822112" target="_blank">Falar no WhatsApp</a>
         </div>
       </section>
 
@@ -153,7 +193,6 @@
             <option value="miniatura">Miniaturas</option>
             <option value="MTG">MTG</option>
             <option value="RPG">RPG</option>
-            
           </select>
           <select id="filterMat">
             <option value="">Material</option>
