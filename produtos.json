@@ -36,11 +36,11 @@
     "id": "p04",
     "name": "Conjunto de dados - D20, D12, D10, D8, D6, D4",
     "img": "imagens/Conjunto de dados - D20, D12, D10, D8, D6, D4.webp",
-    "desc": "Escolha o dado (d20, d12, d10, d8, d6, d4), escolha o tipo de gráfico (em relevo ou nivelado) e escolha a cor que mais combina com você.",
+    "desc": "Escolha o dado (d20, d12, d10, d8, d6, d4), escolha o tipo de gráfico (em relevo ou nivelado) e escolha a cor que mais combina com você. R$2,50 a unidade ou R$12,00 o conjunto",
     "size": "30 mm",
     "material": "pla",
     "category": "RPG",
     "tags": ["rpg", "dado", "mtg"],
-    "price": "R$2,50 a unidade ou R$12,00 o conjunto"
+    "price": "R$2.50 a unidade ou R$12.00 o conjunto"
   }
 ]

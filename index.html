@@ -392,6 +392,9 @@
         style="float:right;border:0;background:none;font-size:18px;cursor:pointer;">✕</button>
       <h3>🛒 Seu Carrinho</h3>
       <div id="cartItems"></div>
+      <div id="cartItems"></div>
+      <p id="cartTotal" style="margin-top:10px;font-weight:bold;text-align:right;"></p>
+
       <br>
       <button id="sendCart" class="btn primary" style="width:100%">Enviar pedido pelo WhatsApp</button>
     </div>
@@ -489,23 +492,34 @@
     cartModal.onclick = e => { if (e.target === cartModal) cartModal.classList.remove('show'); };
 
     function renderCart() {
-      if (cart.length === 0) {
-        cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
-        return;
-      }
-      cartItems.innerHTML = cart.map((p, i) =>
-        `<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:6px 0;">
-          <span>${p.name}</span>
-          <button onclick="removeItem(${i})" style="background:none;border:none;color:#f97316;cursor:pointer;">Remover</button>
-        </div>`
-      ).join('');
-    }
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
+    document.getElementById('cartTotal').textContent = '';
+    return;
+  }
 
-    window.removeItem = i => {
-      cart.splice(i, 1);
-      updateCartCount();
-      renderCart();
-    };
+  // Renderiza os itens
+  cartItems.innerHTML = cart.map((p, i) => `
+    <div class="cart-item" data-index="${i}" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:6px 0;">
+      <span>${p.name}</span>
+      <button class="remove-item" style="background:none;border:none;color:#f97316;cursor:pointer;">Remover</button>
+    </div>
+  `).join('');
+
+  // Calcula e mostra o total
+  const total = cart.reduce((sum, p) => sum + parseFloat(p.price.replace(/[^\d.-]/g, '')), 0);
+  document.getElementById('cartTotal').textContent = `Total: R$ ${total.toFixed(2)}`;
+}
+
+// Adiciona escuta de eventos no container (event delegation)
+cartItems.addEventListener('click', e => {
+  if (e.target.classList.contains('remove-item')) {
+    const index = e.target.closest('.cart-item').dataset.index;
+    cart.splice(index, 1);
+    updateCartCount();
+    renderCart();
+  }
+});
 
     document.getElementById('sendCart').onclick = () => {
       if (cart.length === 0) return;
