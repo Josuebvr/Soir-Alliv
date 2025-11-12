@@ -348,7 +348,9 @@
         <h3>Encomendas sob medida</h3> 
         <p> Também realizamos criações exclusivas que não estão listadas no site. Caso deseje um modelo totalmente novo ou específico, entre em contato conosco pelo WhatsApp e descreva sua ideia. Desenvolveremos o projeto especialmente para você. </p> 
        
-        <div class="actions"> <a class="btn secondary" href="https://wa.me/5519988822112" target="_blank">Falar no WhatsApp</a> </div> </section>
+        <div class="actions"><a class="btn secondary" href="https://wa.me/5519988822112?text=Olá!%20Gostaria%20de%20pedir%20uma%20encomenda%20sob%20medida!" target="_blank">Falar no WhatsApp</a> </div>
+
+</section>
 
       <section id="catalog">
         <h2>Catálogo</h2>
@@ -460,10 +462,12 @@
     });
 
     addToCartBtn.onclick = () => {
-      cart.push(currentProduct);
-      updateCartCount();
-      modal.classList.remove('show');
+    cart.push(currentProduct);
+    updateCartCount();
+    modal.classList.remove('show');
+    alert('✅ Produto adicionado ao carrinho!');
     };
+
 
     function updateCartCount() {
       document.getElementById('cartCount').textContent = cart.length;
