@@ -1,32 +1,35 @@
 [
   {
     "id": "p01",
-    "name": "Miniatura: Cavaleiro Élfico",
-    "img": "https://picsum.photos/seed/rpg1/600/400",
-    "desc": "Miniatura em escala 1:24 com detalhes inspirados em armaduras élficas.",
-    "size": "7 cm",
-    "material": "resina",
-    "category": "miniatura",
-    "tags": ["rpg", "fantasia"]
+    "name": "Caixa para Deck de Commander - Spellbook",
+    "img": "imagens/spellbook.webp",
+    "desc": "A caixa acomoda o seguinte: Zona de Comando que exibe seu Comandante como parte da capa do livro, 100 cartas com sleeves, 50 cartas/tokens sem sleeve ou 20-30 com sleeve, 16x D6 (dados de 16mm), 6x D20 (dados de 22mm) e 4 canetas para quadro branco.",
+    "size": "15 cm",
+    "material": "pla",
+    "category": "MTG",
+    "tags": ["mtg", "deckbox"],
+    "price": "R$120.00"
   },
   {
     "id": "p02",
-    "name": "Espada decorativa pequena",
-    "img": "https://picsum.photos/seed/rpg2/600/400",
-    "desc": "Espada estilizada para decoração ou cosplay.",
-    "size": "25 cm",
+    "name": "Kit Definitivo para Jogadores de DND",
+    "img": "imagens/Kit Definitivo para Jogadores de DND.webp",
+    "desc": "Portas com rastreadores para tudo o que você precisa para uma sessão completa de D&D, sem ficha de personagem extra, tudo pronto para usar, configurado em 6 segundos. Possui na porta Esquerda: Atributos principais (FOR, CON, DES, SAB, INT, CAR), PV (Máx, temp e Atual), Iniciativa, CA e Bônus de Proficiência, Testes de Morte (sucessos e falhas), Contador de Dados de Vida, CD de Resistência a Magia e rastreadores de Espaços de Magia. Porta Direita: Todas as 18 Perícias necessárias para fazer qualquer teste",
+    "size": "10cm",
     "material": "pla",
-    "category": "acessorio",
-    "tags": ["fantasia", "decoracao"]
+    "category": "RPG",
+    "tags": ["rpg", "deckbox"],
+    "price": "R$120.00"
   },
   {
     "id": "p03",
-    "name": "Teste",
-    "img": "https://picsum.photos/seed/rpg2/600/400",
-    "desc": "Teste.",
+    "name": "Caixa de Deck MTG Commander com Sideboard",
+    "img": "imagens/Caixa de Deck MTG Commander com Sideboard.webp",
+    "desc": "Caixa para Deck de MTG. O formato comporta facilmente mais de 100 cards com sleeves e também possui um compartimento lateral para tokens, dados, contadores de vida e etcs",
     "size": "25 cm",
     "material": "pla",
-    "category": "acessorio",
-    "tags": ["fantasia", "decoracao"]
+    "category": "MTG",
+    "tags": ["mtg", "deckbox"],
+    "price": "R$70.00"
   }
 ]

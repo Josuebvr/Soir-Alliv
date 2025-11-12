@@ -151,16 +151,16 @@
           <select id="filterCat">
             <option value="">Categoria</option>
             <option value="miniatura">Miniaturas</option>
-            <option value="acessorio">Acessórios</option>
-            <option value="decoracao">Decoração</option>
-            <option value="funcional">Peças funcionais</option>
+            <option value="MTG">MTG</option>
+            <option value="RPG">RPG</option>
+            
           </select>
           <select id="filterMat">
             <option value="">Material</option>
             <option value="pla">PLA</option>
             <option value="petg">PETG</option>
-            <option value="resina">Resina</option>
-            <option value="asa">ASA</option>
+            <option value="abs">ABS</option>
+            <option value="tpu">TPU</option>
           </select>
         </div>
 
@@ -244,7 +244,7 @@
       modalDesc.textContent=p.desc;
       modalMat.textContent=p.material.toUpperCase();
       modalSize.textContent=p.size;
-      modalPrice.textContent=p.price||'Sob consulta';
+      modalPrice.textContent=p.price;
       orderWhats.href=`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent('Olá! Tenho interesse no produto: '+p.name)}`;
     });
     document.getElementById('closeModal').onclick=()=>modal.classList.remove('show');
