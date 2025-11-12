@@ -1,0 +1,22 @@
+[
+  {
+    "id": "p01",
+    "name": "Miniatura: Cavaleiro Élfico",
+    "img": "https://picsum.photos/seed/rpg1/600/400",
+    "desc": "Miniatura em escala 1:24 com detalhes inspirados em armaduras élficas.",
+    "size": "7 cm",
+    "material": "resina",
+    "category": "miniatura",
+    "tags": ["rpg", "fantasia"]
+  },
+  {
+    "id": "p02",
+    "name": "Espada decorativa pequena",
+    "img": "https://picsum.photos/seed/rpg2/600/400",
+    "desc": "Espada estilizada para decoração ou cosplay.",
+    "size": "25 cm",
+    "material": "pla",
+    "category": "acessorio",
+    "tags": ["fantasia", "decoracao"]
+  }
+]
