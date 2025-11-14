@@ -1,114 +1,435 @@
 [
     {
         "id": "cor01",
-        "name": "Laranja",
+        "name": "Azul Esverdeado",
         "images": [
-            "imagens/cores/laranja-1.webp",
-            "imagens/cores/laranja-2.webp",
-            "imagens/cores/laranja-3.webp"
+            "imagens/cores/azul-esverdeado-1.webp",
+            "imagens/cores/azul-esverdeado-2.webp",
+            "imagens/cores/azul-esverdeado-3.webp"
         ],
-        "desc": "Cor vibrante e marcante, ideal para peças decorativas e cheias de energia.",
-        "hex": "#f97316",
+        "desc": "",
+        "hex": "#004f71",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
         "id": "cor02",
-        "name": "Preto",
+        "name": "Verde (Escuro)",
         "images": [
-            "imagens/cores/preto-1.webp",
-            "imagens/cores/preto-2.webp",
-            "imagens/cores/preto-3.webp"
+            "imagens/cores/verde-escuro-1.webp",
+            "imagens/cores/verde-escuro-2.webp",
+            "imagens/cores/verde-escuro-3.webp"
         ],
-        "desc": "Elegante e neutro, combina com qualquer projeto, perfeito para um toque refinado.",
-        "hex": "#000",
+        "desc": "",
+        "hex": "#636b2f",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
         "id": "cor03",
-        "name": "Branco",
+        "name": "Vermelho Dragão",
         "images": [
-            "imagens/cores/branco-1.webp",
-            "imagens/cores/branco-2.webp",
-            "imagens/cores/branco-3.webp"
+            "imagens/cores/vermelho-dragao-1.webp",
+            "imagens/cores/vermelho-dragao-2.webp",
+            "imagens/cores/vermelho-dragao-1.webp"
         ],
-        "desc": "Versátil e limpo, ótimo para modelos de exibição ou para pintura posterior.",
-        "hex": "#fff",
+        "desc": "",
+        "hex": "#ff0100",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
         "id": "cor04",
-        "name": "Vermelho",
+        "name": "Verde Menta",
         "images": [
-            "imagens/cores/vermelho-1.webp",
-            "imagens/cores/vermelho-2.webp",
-            "imagens/cores/vermelho-3.webp"
+            "imagens/cores/verde-menta-1.webp",
+            "imagens/cores/verde-menta-2.webp",
+            "imagens/cores/verde-menta-3.webp"
         ],
-        "desc": "Intenso e apaixonante, ideal para projetos que buscam destaque e presença.",
-        "hex": "#e63946",
+        "desc": "",
+        "hex": "#d3fbe9",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
         "id": "cor05",
-        "name": "Azul",
+        "name": "Verde Amarelado",
         "images": [
-            "imagens/cores/azul-1.webp",
-            "imagens/cores/azul-2.webp",
-            "imagens/cores/azul-3.webp"
+            "imagens/cores/verde-amarelado-1.webp",
+            "imagens/cores/verde-amarelado-2.webp",
+            "imagens/cores/verde-amarelado-3.webp"
         ],
-        "desc": "Sereno e técnico, transmite confiança e precisão em cada detalhe.",
-        "hex": "#457b9d",
+        "desc": "",
+        "hex": "#85c734",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
         "id": "cor06",
-        "name": "Verde",
+        "name": "Mármore Cinza",
         "images": [
-            "imagens/cores/verde-1.webp",
-            "imagens/cores/verde-2.webp",
-            "imagens/cores/verde-3.webp"
+            "imagens/cores/marmore-cinza-1.webp",
+            "imagens/cores/marmore-cinza-2.webp",
+            "imagens/cores/marmore-cinza-3.webp"
         ],
-        "desc": "Natural e equilibrado, excelente para projetos orgânicos e ecológicos.",
-        "hex": "#2a9d8f",
+        "desc": "",
+        "hex": "#b2b3b7",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
         "id": "cor07",
+        "name": "Mármore Branco",
+        "images": [
+            "imagens/cores/marmore-branco-1.webp",
+            "imagens/cores/marmore-branco-2.webp",
+            "imagens/cores/marmore-branco-3.webp"
+        ],
+        "desc": "",
+        "hex": "#e7e8eb",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor08",
+        "name": "Lilás",
+        "images": [
+            "imagens/cores/lilas-1.webp",
+            "imagens/cores/lilas-2.webp",
+            "imagens/cores/lilas-3.webp"
+        ],
+        "desc": "",
+        "hex": "#3d1365",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor09",
+        "name": "Cinza Escuro",
+        "images": [
+            "imagens/cores/cinza-escuro-1.webp",
+            "imagens/cores/cinza-escuro-2.webp",
+            "imagens/cores/cinza-escuro-3.webp"
+        ],
+        "desc": "",
+        "hex": "#565656",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor10",
+        "name": "Cinza Claro",
+        "images": [
+            "imagens/cores/cinza-claro-1.webp",
+            "imagens/cores/cinza-claro-2.webp",
+            "imagens/cores/cinza-claro-3.webp"
+        ],
+        "desc": "",
+        "hex": "#606060",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor11",
+        "name": "Ciano",
+        "images": [
+            "imagens/cores/ciano-1.webp",
+            "imagens/cores/ciano-2.webp",
+            "imagens/cores/ciano-3.webp"
+        ],
+        "desc": "",
+        "hex": "#00ffff",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor12",
+        "name": "Bordô",
+        "images": [
+            "imagens/cores/bordo-1.webp",
+            "imagens/cores/bordo-2.webp",
+            "imagens/cores/bordo-3.webp"
+        ],
+        "desc": "",
+        "hex": "#800000",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor13",
         "name": "Amarelo",
         "images": [
             "imagens/cores/amarelo-1.webp",
             "imagens/cores/amarelo-2.webp",
             "imagens/cores/amarelo-3.webp"
         ],
-        "desc": "Brilhante e alegre, perfeito para peças que desejam chamar atenção.",
-        "hex": "#ffd166",
+        "desc": "",
+        "hex": "#ffff00",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     },
+
+
+
+
     {
-        "id": "cor08",
+        "id": "cor14",
+        "name": "Marrom",
+        "images": [
+            "imagens/cores/marrom-1.webp",
+            "imagens/cores/marrom-2.webp",
+            "imagens/cores/marrom-3.webp"
+        ],
+        "desc": "",
+        "hex": "#4a2500",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor15",
+        "name": "Preto",
+        "images": [
+            "imagens/cores/preto-1.webp",
+            "imagens/cores/preto-2.webp",
+            "imagens/cores/preto-3.webp"
+        ],
+        "desc": "",
+        "hex": "#000000",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor16",
+        "name": "Rosa Claro",
+        "images": [
+            "imagens/cores/rosa-claro-1.webp",
+            "imagens/cores/rosa-claro-2.webp",
+            "imagens/cores/rosa-claro-3.webp"
+        ],
+        "desc": "",
+        "hex": "#ffb6c1",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor17",
         "name": "Roxo",
         "images": [
             "imagens/cores/roxo-1.webp",
             "imagens/cores/roxo-2.webp",
             "imagens/cores/roxo-3.webp"
         ],
-        "desc": "Misterioso e criativo, ideal para projetos artísticos e únicos.",
-        "hex": "#9b5de5",
+        "desc": "",
+        "hex": "#b300b3",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor18",
+        "name": "Verde",
+        "images": [
+            "imagens/cores/verde-1.webp",
+            "imagens/cores/verde-2.webp",
+            "imagens/cores/verde-3.webp"
+        ],
+        "desc": "",
+        "hex": "#4ff4a2",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor19",
+        "name": "Vermelho",
+        "images": [
+            "imagens/cores/vermelho-1.webp",
+            "imagens/cores/vermelho-2.webp",
+            "imagens/cores/vermelho-3.webp"
+        ],
+        "desc": "",
+        "hex": "#cc0000",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor20",
+        "name": "Branco",
+        "images": [
+            "imagens/cores/branco-1.webp",
+            "imagens/cores/branco-2.webp",
+            "imagens/cores/branco-3.webp"
+        ],
+        "desc": "",
+        "hex": "#ffffff",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor21",
+        "name": "Laranja",
+        "images": [
+            "imagens/cores/laranja-1.webp",
+            "imagens/cores/laranja-2.webp",
+            "imagens/cores/laranja-3.webp"
+        ],
+        "desc": "",
+        "hex": "#ffa500",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor22",
+        "name": "Bege",
+        "images": [
+            "imagens/cores/bege-1.webp",
+            "imagens/cores/bege-2.webp",
+            "imagens/cores/bege-3.webp"
+        ],
+        "desc": "",
+        "hex": "#ead0b4",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor23",
+        "name": "Azul Claro",
+        "images": [
+            "imagens/cores/azul-claro-1.webp",
+            "imagens/cores/azul-claro-2.webp",
+            "imagens/cores/azul-claro-3.webp"
+        ],
+        "desc": "",
+        "hex": "#4586c6",
+        "material": "PLA",
+        "category": "cor",
+        "price": "Indisponível"
+    },
+
+
+
+
+    {
+        "id": "cor24",
+        "name": "Azul",
+        "images": [
+            "imagens/cores/azul-1.webp",
+            "imagens/cores/azul-2.webp",
+            "imagens/cores/azul-3.webp"
+        ],
+        "desc": "",
+        "hex": "#0000b3",
         "material": "PLA",
         "category": "cor",
         "price": "Indisponível"
     }
+
+
+
+
+
 ]
