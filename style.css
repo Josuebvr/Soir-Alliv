@@ -320,7 +320,8 @@
      border-radius: 8px;
      margin-bottom: 12px;
      object-fit: cover;
-     max-height: 420px;
+     height: 420px;
+     /* 🔸 tamanho fixo */
  }
 
  @keyframes fadeIn {
@@ -342,7 +343,8 @@
      }
 
      .modal img {
-         max-height: 300px;
+         height: 300px;
+         /* 🔸 tamanho fixo */
      }
  }
 
@@ -360,7 +362,8 @@
      width: 100%;
      border-radius: 8px;
      object-fit: cover;
-     max-height: 420px;
+     height: 420px;
+     /* 🔸 tamanho fixo */
      transition: opacity 0.3s ease;
  }
 
