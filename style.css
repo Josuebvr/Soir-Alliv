@@ -313,6 +313,9 @@
      max-width: 480px;
      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
      animation: fadeIn 0.25s ease;
+     /* limitar altura para caber na viewport e permitir scroll interno se necessário */
+     max-height: calc(100vh - 80px);
+     overflow: auto;
  }
 
  .modal img {
@@ -321,7 +324,9 @@
      margin-bottom: 12px;
      object-fit: cover;
      height: 420px;
-     /* 🔸 tamanho fixo */
+     /* tamanho fixo no desktop */
+     max-height: calc(100vh - 160px);
+     /* não extrapolar a viewport */
  }
 
  @keyframes fadeIn {
@@ -342,9 +347,12 @@
          max-width: 90%;
      }
 
+     /* Em mobile não forçar altura maior que a viewport - manter imagem visível mas limitada */
      .modal img {
          height: 300px;
-         /* 🔸 tamanho fixo */
+         max-height: calc(100vh - 140px);
+         /* garantir que o box role antes de expandir além da tela */
+         object-fit: cover;
      }
  }
 
