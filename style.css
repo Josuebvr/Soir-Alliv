@@ -341,35 +341,41 @@
      }
  }
 
-@media (max-width: 600px) {
-    /* Espaçamento ao redor do modal para garantir margem nas laterais */
-    .modal {
-        padding: 20px;
-        align-items: center;
-        justify-content: center;
-    }
+ @media (max-width: 600px) {
 
-    /* o box deve caber dentro da viewport com folga superior/inferior/lateral */
-    .modal .box {
-        padding: 16px;
-        width: 100%;
-        max-width: calc(100vw - 40px); /* 20px de folga em cada lado */
-        max-height: calc(100vh - 80px); /* 40px de folga em cima/baixo */
-        margin: auto;
-        overflow: auto; /* rolagem interna se necessário */
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-    }
+     /* Espaçamento ao redor do modal para garantir margem nas laterais */
+     .modal {
+         padding: 20px;
+         align-items: center;
+         justify-content: center;
+     }
 
-    /* manter imagem proporcional mas limitar para não extrapolar o box */
-    .modal img {
-        width: 100%;
-        height: auto; /* permite que a imagem se ajuste dentro do box */
-        max-height: calc(100vh - 200px); /* garante espaço para título/meta dentro do box */
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 12px;
-    }
-}
+     /* o box deve caber dentro da viewport com folga superior/inferior/lateral */
+     .modal .box {
+         padding: 16px;
+         width: 100%;
+         max-width: calc(100vw - 40px);
+         /* 20px de folga em cada lado */
+         max-height: calc(100vh - 80px);
+         /* 40px de folga em cima/baixo */
+         margin: auto;
+         overflow: auto;
+         /* rolagem interna se necessário */
+         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+     }
+
+     /* manter imagem proporcional mas limitar para não extrapolar o box */
+     .modal img {
+         width: 100%;
+         height: auto;
+         /* permite que a imagem se ajuste dentro do box */
+         max-height: calc(100vh - 200px);
+         /* garante espaço para título/meta dentro do box */
+         object-fit: cover;
+         border-radius: 8px;
+         margin-bottom: 12px;
+     }
+ }
 
  .carousel {
      position: relative;
