@@ -296,7 +296,7 @@
      display: none;
      align-items: center;
      justify-content: center;
-     z-index: 50;
+     z-index: 200;
      padding: 20px;
      overflow-y: auto;
  }
@@ -421,6 +421,23 @@
  }
 
  /* Ajustes responsivos para header e nav em dispositivos móveis */
+ @media (max-width: 768px) {
+     .catalog {
+         grid-template-columns: 1fr;
+         /* 🔸 1 card por linha em tablet/mobile */
+     }
+
+     .card {
+         height: 520px;
+         /* 🔸 manter altura fixa */
+     }
+
+     .card img {
+         height: 300px;
+         /* 🔸 manter tamanho fixo das imagens */
+     }
+ }
+
  @media (max-width:480px) {
      header {
          padding: 12px 14px;
@@ -442,5 +459,20 @@
 
      .brand h1 {
          font-size: 18px
+     }
+
+     .catalog {
+         grid-template-columns: 1fr;
+         /* 🔸 1 card por linha */
+     }
+
+     .card {
+         height: 520px;
+         /* 🔸 manter altura fixa */
+     }
+
+     .card img {
+         height: 300px;
+         /* 🔸 manter tamanho fixo das imagens */
      }
  }
