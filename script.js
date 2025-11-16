@@ -189,26 +189,30 @@ document.addEventListener('click', e => {
 
     modalName.textContent = p.name;
     modalDesc.textContent = p.desc;
-    modalMat.textContent = p.material.toUpperCase();
 
     // Exibir campos específicos conforme o tipo de item
     if (isColorsPage) {
         // Em cores.html
-        if (modalSize) modalSize.parentElement.style.display = 'none';
         if (modalHex) {
             modalHex.style.backgroundColor = p.hex || '#ddd';
             modalHex.parentElement.style.display = 'block';
         }
     } else {
         // Em index.html (produtos)
-        if (modalSize) {
-            modalSize.textContent = p.size;
-            modalSize.parentElement.style.display = 'block';
-        }
         if (modalHex) modalHex.parentElement.style.display = 'none';
     }
 
     modalPrice.textContent = p.price;
+
+    // Botão ver mais/menos: só aparece se texto for longo e não estamos em cores.html
+    const moreBtn = document.getElementById('moreBtn');
+    if (moreBtn) {
+        if (isColorsPage || !p.desc || p.desc.length < 120) {
+            moreBtn.style.display = 'none';
+        } else {
+            moreBtn.style.display = 'inline-block';
+        }
+    }
 });
 
 // Navegação do carrossel
@@ -311,3 +315,13 @@ grid.addEventListener('click', (e) => {
 });
 
 loadProducts();
+
+const moreBtn = document.getElementById("moreBtn");
+
+moreBtn.onclick = () => {
+    modalDesc.classList.toggle("expanded");
+    moreBtn.textContent = modalDesc.classList.contains("expanded")
+        ? "Ver menos"
+        : "Ver mais";
+};
+
