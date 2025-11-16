@@ -43,10 +43,65 @@ body.scrolled header {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/*
+  style.css
+  Estilização principal do site.
+  Este arquivo foi reorganizado com seções e comentários para facilitar a leitura.
+*/
+
+:root {
+    /* Variáveis de tema */
+    --bg: #ffffff;
+    --text: #111;
+    --muted: #666;
+    --accent: #f97316;
+    /* cor de destaque laranja */
+    --radius: 14px;
+    --maxw: 1200px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+}
+
+/* Layout e wrapper */
+body {
+    margin: 0;
+    background: linear-gradient(180deg, #fff 0%, #fff6f0 100%);
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.wrap {
+    width: 100%;
+    max-width: var(--maxw);
+}
+
+/* Header (topbar) */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+    transition: box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+body.scrolled header {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 .brand {
     display: flex;
     align-items: center;
-    gap: 14px
+    gap: 14px;
 }
 
 .logo {
@@ -66,13 +121,13 @@ body.scrolled header {
 .brand h1 {
     margin: 0;
     font-size: 20px;
-    color: var(--text)
+    color: var(--text);
 }
 
 .brand p {
     margin: 0;
     font-size: 13px;
-    color: var(--muted)
+    color: var(--muted);
 }
 
 nav {
@@ -95,7 +150,7 @@ nav a {
     text-decoration: none;
     font-size: 14px;
     padding: 8px 12px;
-    border-radius: 8px
+    border-radius: 8px;
 }
 
 nav a.cta {
@@ -124,9 +179,10 @@ nav .cart-count {
     padding: 2px 6px;
 }
 
+/* Main content */
 main {
     display: grid;
-    gap: 30px
+    gap: 30px;
 }
 
 .hero {
@@ -237,13 +293,13 @@ main {
 
 .card h3 {
     margin: 10px 0 4px 0;
-    font-size: 16px
+    font-size: 16px;
 }
 
 .card p {
     margin: 0;
     color: var(--muted);
-    font-size: 13px
+    font-size: 13px;
 }
 
 .meta {
@@ -274,6 +330,7 @@ footer {
     color: var(--muted);
 }
 
+/* Modal (detalhes / carrinho) */
 .modal {
     position: fixed;
     inset: 0;
@@ -304,15 +361,12 @@ footer {
     overflow: hidden;
 }
 
-
 .modal .carousel img {
     width: 100%;
     height: 280px;
     object-fit: cover;
     border-radius: 10px;
 }
-
-
 
 #modalDesc {
     flex-grow: 1;
@@ -331,7 +385,6 @@ footer {
     overflow: auto;
 }
 
-
 .more-btn {
     background: none;
     border: none;
@@ -342,13 +395,13 @@ footer {
     padding: 0;
 }
 
-
 #modalPrice {
     font-size: 20px;
     font-weight: 700;
     margin-top: 8px;
 }
 
+/* Responsividade */
 @media (max-width: 600px) {
     .modal .box {
         max-width: 92vw;
@@ -368,7 +421,6 @@ footer {
         overflow: hidden;
     }
 }
-
 
 .carousel {
     position: relative;
@@ -428,6 +480,7 @@ footer {
     padding: 4px 8px;
 }
 
+/* Destaques nos links de navegação específicos */
 nav a[href="cores.html"] {
     background: var(--accent);
     color: #fff;
@@ -452,27 +505,27 @@ nav a[href="index.html"] {
     }
 }
 
-@media (max-width:480px) {
+@media (max-width: 480px) {
     header {
         padding: 12px 14px;
     }
 
     .logo {
         width: 44px;
-        height: 44px
+        height: 44px;
     }
 
     nav a {
         padding: 6px 8px;
-        font-size: 13px
+        font-size: 13px;
     }
 
     .cart-btn {
-        font-size: 18px
+        font-size: 18px;
     }
 
     .brand h1 {
-        font-size: 18px
+        font-size: 18px;
     }
 
     .catalog {

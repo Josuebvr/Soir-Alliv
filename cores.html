@@ -7,18 +7,20 @@
     <title>Cores</title>
     <meta name="description" content="Cores disponíveis para impressão 3D - Soir Alliv">
     <link rel="stylesheet" href="style.css">
+    <!-- Estilos compartilhados -->
 </head>
 
 <body>
     <div class="wrap">
+        <!-- Header / navegação -->
         <header>
             <div class="brand">
-
                 <div>
                     <h1>Soir Alliv</h1>
                     <p>Portfólio de Impressões 3D</p>
                 </div>
             </div>
+
             <nav>
                 <a href="index.html">Catálogo</a>
                 <a href="cores.html" class="cta">Cores</a>
@@ -26,15 +28,15 @@
         </header>
 
         <main>
+            <!-- Bloco explicativo sobre as cores -->
             <section class="hero">
                 <h2>Cores disponíveis para impressão 3D</h2>
                 <p>
-                    Explore abaixo as cores que trazem vida às suas impressões.
-                    Todas as cores disponíveis podem ser aplicadas em qualquer modelo do site,
-                    você escolhe livremente o tom que mais combina com o seu projeto.
-                    E caso deseje uma cor específica que não está listada aqui,
-                    é só entrar em contato pelo WhatsApp que providenciaremos a cor que você deseja.
+                    Explore abaixo as cores que trazem vida às suas impressões. Todas as cores disponíveis podem ser
+                    aplicadas em qualquer modelo do site, você escolhe livremente o tom que mais combina com o seu
+                    projeto. Se desejar uma cor específica que não está listada, entre em contato pelo WhatsApp.
                 </p>
+
                 <div class="actions">
                     <a class="btn secondary"
                         href="https://wa.me/5519988822112?text=Olá!%20Gostaria%20de%20pedir%20uma%20cor%20específica!"
@@ -42,9 +44,9 @@
                         Falar no WhatsApp
                     </a>
                 </div>
-
             </section>
 
+            <!-- Grid com as cores (renderizado via script.js) -->
             <section id="catalog">
                 <div class="catalog" id="catalogGrid"></div>
             </section>
@@ -53,6 +55,7 @@
         <footer>© 2025 Soir Alliv. Todos os direitos reservados.</footer>
     </div>
 
+    <!-- Modal de detalhe da cor -->
     <div class="modal" id="modal">
         <div class="box">
             <button id="closeModal"
@@ -66,13 +69,16 @@
             </div>
 
             <p id="modalDesc"></p>
-            <p><strong>Cor:</strong> <span id="modalHex"
+            <p>
+                <strong>Cor:</strong>
+                <span id="modalHex"
                     style="display:inline-block;width:20px;height:20px;border-radius:4px;vertical-align:middle;margin-left:6px;border:1px solid #ddd;"></span>
             </p>
             <p><strong>Disponibilidade:</strong> <span id="modalPrice"></span></p>
         </div>
     </div>
 
+    <!-- Modal do carrinho (compartilhado) -->
     <div class="modal" id="cartModal">
         <div class="box">
             <button id="closeCart"
@@ -85,11 +91,12 @@
         </div>
     </div>
 
-</body>
+    <!-- Flag para o script saber que estamos na página de cores -->
+    <script>
+        window.isColorsPage = true;
+    </script>
 
-<script>
-    window.isColorsPage = true;
-</script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
+</body>
 
 </html>
