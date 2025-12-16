@@ -122,8 +122,24 @@
             "mtg"
         ],
         "price": "R$70.00"
+    },
+    {
+            "id": "p08",
+        "name": "Caixa para Deck Commander - Satoru Umezawa",
+        "images": [
+            "imagens/p08/1.webp",
+            "imagens/p08/2.webp",
+            "imagens/p08/3.webp"
+        ],
+        "desc": "Esta caixa de deck Commander personalizada foi criada com cuidado e precisão para proteger seu precioso material em papelão.",
+        "size": "113 mm",
+        "material": "pla",
+        "category": "MTG",
+        "tags": [
+            "mtg"
+        ],
+        "price": "R$70.00"
     }
-
 
 
 
