@@ -87,7 +87,7 @@
         "tags": [
             "rpg"
         ],
-        "price": "R$03.00 a unidade"
+        "price": "R$3.00 a unidade"
     },
     {
             "id": "p06",
@@ -97,16 +97,32 @@
             "imagens/p06/2.webp",
             "imagens/p06/3.webp"
         ],
-        "desc": "Esta é uma caixa para baralho que comporta mais de 100 cartas com sleeves. Feita para decks de Commander de Magic The Gathering, mas pode ser facilmente utilizada para qualquer outra coisa. As tampas encaixam-se no lugar e uma caixa de baralho completa pode ser segurada de cabeça para baixo sem se desmontar ou com as cartas fazendo barulho lá dentro. Elas são mais fáceis de abrir puxando-se suavemente por um lado e, em seguida, abrindo-as completamente.",
+        "desc": "Comporta mais de 100 cartas com sleeves. Feita para decks de Commander de Magic, mas pode ser facilmente utilizada para qualquer outra coisa. As tampas encaixam-se perfeitamente no lugar e pode ser segurada de cabeça para baixo sem se desmontar ou com as cartas fazendo barulho lá dentro.",
         "size": "69 mm",
         "material": "pla",
         "category": "MTG",
         "tags": [
             "mtg"
         ],
-        "price": "R$30.00 a unidade"
+        "price": "R$30.00"
+    },
+    {
+            "id": "p07",
+        "name": "Arca da Aliança",
+        "images": [
+            "imagens/p07/1.webp",
+            "imagens/p07/2.webp",
+            "imagens/p07/3.webp"
+        ],
+        "desc": "Uma peça de museu! Ou em seu escritório. Ou talvez na lareira. Quem sabe?! Cabe totalmente a você onde exibir (ou guardar) a Arca da Aliança. Esperançosamente, se você está se dando ao trabalho de comprar isso, não está considerando embalá-la e armazená-la em um depósito.",
+        "size": "122 mm",
+        "material": "pla",
+        "category": "decoracoes",
+        "tags": [
+            "mtg"
+        ],
+        "price": "R$70.00"
     }
-
 
 
 
