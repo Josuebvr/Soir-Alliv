@@ -198,8 +198,19 @@ let currentImageIndex = 0;
 if (!isColorsPage && addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
         if (!currentProduct) return;
-        const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
-        const productToAdd = { ...currentProduct, quantity };
+        // Usamos a quantidade apenas quando o produto permite (ex: moedas)
+        let quantity = 1;
+        if (quantityInput && currentProduct && currentProduct.id === 'p05') {
+            quantity = parseInt(quantityInput.value) || 1;
+        }
+        // clonamos profundamente o produto para evitar referências compartilhadas
+        let productToAdd;
+        try {
+            productToAdd = JSON.parse(JSON.stringify(currentProduct));
+        } catch (e) {
+            productToAdd = { ...currentProduct };
+        }
+        productToAdd.quantity = quantity;
         cart.push(productToAdd);
         updateCartCount();
         renderCart();
@@ -257,6 +268,8 @@ document.addEventListener('click', e => {
             quantityInput.value = '1';
         } else {
             quantityContainer.style.display = 'none';
+            // garantir que o campo de quantidade não retenha valor de outro produto
+            quantityInput.value = '1';
         }
     }
 
@@ -353,13 +366,13 @@ if (!isColorsPage) {
             const displayName = quantity > 1 ? `${p.name} (x${quantity})` : p.name;
 
             return `
-        <div class="cart-item" data-index="${i}" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:6px 0;">
-          <div style="flex:1;">
-            <span>${displayName}</span>
-            ${quantity > 1 ? `<br><span style="font-size: 12px; color: #666;">Subtotal: R$ ${subtotal.toFixed(2)}</span>` : ''}
-          </div>
-          <button class="remove-item" style="background:none;border:none;color:#f97316;cursor:pointer;">Remover</button>
-        </div>`;
+                <div class="cart-item" data-index="${i}" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:6px 0;">
+                    <div style="flex:1;">
+                        <span>${displayName}</span>
+                        <br><span style="font-size: 12px; color: #645f5fff;">Subtotal: R$ ${subtotal.toFixed(2)}</span>
+                    </div>
+                    <button class="remove-item" style="background:none;border:none;color:#f97316;cursor:pointer;">Remover</button>
+                </div>`;
         }).join('');
 
         const total = cart.reduce((sum, p) => {
