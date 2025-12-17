@@ -15,12 +15,6 @@ let cart = [];
 const isColorsPage = typeof window.isColorsPage !== 'undefined' ? window.isColorsPage : false;
 const dataFile = isColorsPage ? 'cores.json' : 'produtos.json';
 
-/*
- * isColorAvailable(p)
- * - Verifica se uma cor/produto está disponível.
- * - Aceita múltiplas propriedades de entrada: 'available', 'status', 'price'.
- * - Retorna true quando parece estar disponível, false caso contrário.
- */
 function isColorAvailable(p) {
     if (p == null) return false;
 
