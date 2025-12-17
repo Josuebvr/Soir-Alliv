@@ -2,6 +2,6 @@
 const GITHUB_CONFIG = {
     owner: 'Josuebvr',
     repo: 'soir-comments',
-    token: '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', // seu token gerado acima
+    token: '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', 
     branch: 'main'
 };
