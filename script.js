@@ -224,19 +224,50 @@ async function saveReviews(productId, reviews) {
     } catch (e) { }
 }
 
+// Obtém e memoriza o branch padrão do repositório, caso não especificado
+let __ghDefaultBranch = null;
+async function getGitHubBranch() {
+    if (!GITHUB_CONFIG) return null;
+    if (GITHUB_CONFIG.branch) return GITHUB_CONFIG.branch;
+    if (__ghDefaultBranch) return __ghDefaultBranch;
+    try {
+        const infoUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}`;
+        const resp = await fetch(infoUrl, {
+            headers: {
+                'Authorization': `token ${GITHUB_CONFIG.token}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        if (resp.ok) {
+            const data = await resp.json();
+            __ghDefaultBranch = data.default_branch || 'main';
+            return __ghDefaultBranch;
+        }
+    } catch (e) {
+        console.warn('Não foi possível obter o branch padrão do GitHub, assumindo main');
+    }
+    return 'main';
+}
+
 // Função auxiliar para ler arquivo do GitHub
 async function readFileFromGitHub(filePath) {
-    if (!GITHUB_CONFIG || !GITHUB_CONFIG.token) return null;
+    if (!window.GITHUB_CONFIG || !GITHUB_CONFIG.token) return null;
     try {
-        const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
+        const branch = await getGitHubBranch();
+        const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}?ref=${encodeURIComponent(branch)}`;
         const response = await fetch(url, {
             headers: {
                 'Authorization': `token ${GITHUB_CONFIG.token}`,
-                'Accept': 'application/vnd.github.v3+raw'
+                'Accept': 'application/vnd.github.v3.raw'
             }
         });
         if (response.status === 404) return null;
-        if (!response.ok) return null;
+        if (!response.ok) {
+            let body = '';
+            try { body = await response.text(); } catch (e) {}
+            console.error('Falha ao ler do GitHub', response.status, body);
+            return null;
+        }
         return await response.text();
     } catch (e) {
         console.error('Erro ao ler do GitHub:', e);
@@ -246,14 +277,15 @@ async function readFileFromGitHub(filePath) {
 
 // Função auxiliar para escrever arquivo no GitHub
 async function writeFileToGitHub(filePath, content, message) {
-    if (!GITHUB_CONFIG || !GITHUB_CONFIG.token) return false;
+    if (!window.GITHUB_CONFIG || !GITHUB_CONFIG.token) return false;
     try {
-        const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
+        const branch = await getGitHubBranch();
+        const baseUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
 
-        // Primeiro, tenta ler o arquivo existente para obter o SHA
+        // Primeiro, tenta ler o arquivo existente para obter o SHA na ref correta
         let sha = null;
         try {
-            const getResponse = await fetch(url, {
+            const getResponse = await fetch(`${baseUrl}?ref=${encodeURIComponent(branch)}`, {
                 headers: {
                     'Authorization': `token ${GITHUB_CONFIG.token}`,
                     'Accept': 'application/vnd.github.v3+json'
@@ -269,11 +301,11 @@ async function writeFileToGitHub(filePath, content, message) {
         const body = {
             message: message || 'Atualizar comentários',
             content: btoa(unescape(encodeURIComponent(content))), // base64 encode
-            branch: GITHUB_CONFIG.branch
+            branch
         };
         if (sha) body.sha = sha;
 
-        const response = await fetch(url, {
+        const response = await fetch(baseUrl, {
             method: 'PUT',
             headers: {
                 'Authorization': `token ${GITHUB_CONFIG.token}`,
@@ -283,7 +315,13 @@ async function writeFileToGitHub(filePath, content, message) {
             body: JSON.stringify(body)
         });
 
-        return response.ok;
+        if (!response.ok) {
+            let errBody = '';
+            try { errBody = await response.text(); } catch (e) {}
+            console.error('Falha ao escrever no GitHub', response.status, errBody);
+            return false;
+        }
+        return true;
     } catch (e) {
         console.error('Erro ao escrever no GitHub:', e);
         return false;
@@ -304,7 +342,8 @@ async function saveReviewsToGitHub(productId, reviews) {
         allReviews[productId] = reviews;
 
         const content = JSON.stringify(allReviews, null, 2);
-        await writeFileToGitHub('comentarios.json', content, `Novo comentário para produto ${productId}`);
+        const ok = await writeFileToGitHub('comentarios.json', content, `Novo comentário para produto ${productId}`);
+        if (!ok) console.error('Não foi possível salvar no GitHub (veja logs acima)');
     } catch (e) {
         console.error('Erro ao salvar reviews no GitHub:', e);
     }
