@@ -99,25 +99,52 @@
     <!-- Modal de detalhe do produto -->
     <div class="modal" id="modal">
         <div class="box">
-            <button id="closeModal"
-                style="float:right;border:0;background:none;font-size:18px;cursor:pointer;">✕</button>
-            <h3 id="modalName"></h3>
+            <button id="closeModal" aria-label="Fechar" class="close-modal">✕</button>
+            <div class="modalContent">
+                <h3 id="modalName"></h3>
 
-            <div class="carousel">
-                <button class="prev">‹</button>
-                <img id="carouselImg" src="" alt="">
-                <button class="next">›</button>
-            </div>
+                <div class="carousel">
+                    <button class="prev">‹</button>
+                    <img id="carouselImg" src="" alt="">
+                    <button class="next">›</button>
+                </div>
 
-            <p id="modalDesc"></p>
-            <button class="more-btn" id="moreBtn">Ver mais</button>
-            <p><strong>Preço:</strong> <span id="modalPrice"></span></p>
-            <div id="quantityContainer" style="display: none; margin: 12px 0; align-items: center; gap: 8px;">
-                <label for="quantityInput" style="font-weight: 600;">Quantidade:</label>
-                <input type="number" id="quantityInput" min="1" value="1"
-                    style="width: 60px; padding: 6px; border: 1px solid #ddd; border-radius: 8px;">
+                <p id="modalDesc"></p>
+                <button class="more-btn" id="moreBtn">Ver mais</button>
+                <p><strong>Preço:</strong> <span id="modalPrice"></span></p>
+                <div id="quantityContainer" style="display: none; margin: 12px 0; align-items: center; gap: 8px;">
+                    <label for="quantityInput" style="font-weight: 600;">Quantidade:</label>
+                    <input type="number" id="quantityInput" min="1" value="1"
+                        style="width: 60px; padding: 6px; border: 1px solid #ddd; border-radius: 8px;">
+                </div>
+                <button id="addToCart" class="btn primary">Adicionar ao Carrinho</button>
+                <!-- Reviews: lista e formulário -->
+                <hr style="margin:16px 0;border:none;border-top:1px solid #eee;">
+                <section id="reviewsSection">
+                    <h4>Avaliações</h4>
+                    <div id="reviewsList" style="margin-bottom:12px;">Nenhuma avaliação ainda.</div>
+
+                    <form id="reviewForm" style="display:flex;flex-direction:column;gap:8px;">
+                        <label style="font-weight:600;">Sua nota:</label>
+                        <select id="reviewRating">
+                            <option value="5">5 — Excelente</option>
+                            <option value="4">4 — Muito bom</option>
+                            <option value="3">3 — Bom</option>
+                            <option value="2">2 — Ruim</option>
+                            <option value="1">1 — Péssimo</option>
+                        </select>
+                        <label style="font-weight:600;">Comentário:</label>
+                        <textarea id="reviewComment" rows="3"
+                            style="padding:8px;border:1px solid #ddd;border-radius:8px;"></textarea>
+                        <label style="font-weight:600;">Fotos (opcional):</label>
+                        <input type="file" id="reviewPhotos" accept="image/*" multiple>
+                        <div id="reviewPhotoPreview" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+                        <div style="display:flex;gap:8px;justify-content:flex-end;">
+                            <button type="button" id="submitReview" class="btn primary">Enviar avaliação</button>
+                        </div>
+                    </form>
+                </section>
             </div>
-            <button id="addToCart" class="btn primary">Adicionar ao Carrinho</button>
         </div>
     </div>
 
@@ -135,6 +162,8 @@
         </div>
     </div>
 
+    <!-- Configuração do GitHub -->
+    <script src="config.js"></script>
     <!-- Script principal da aplicação -->
     <script src="script.js"></script>
 </body>

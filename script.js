@@ -189,36 +189,233 @@ const modalHex = document.getElementById('modalHex');
 const addToCartBtn = document.getElementById('addToCart');
 const quantityContainer = document.getElementById('quantityContainer');
 const quantityInput = document.getElementById('quantityInput');
-let currentProduct = null;
-
-// Controles do carrossel dentro do modal
 const carouselImg = document.getElementById('carouselImg');
-const prevBtn = document.querySelector('.carousel .prev');
-const nextBtn = document.querySelector('.carousel .next');
+const prevBtn = document.querySelector('.modal .carousel .prev');
+const nextBtn = document.querySelector('.modal .carousel .next');
+let currentProduct = null;
 let currentImageIndex = 0;
+// Elements for reviews
+const reviewsListEl = document.getElementById('reviewsList');
+const reviewFormEl = document.getElementById('reviewForm');
+const reviewRatingEl = document.getElementById('reviewRating');
+const reviewCommentEl = document.getElementById('reviewComment');
+const reviewPhotosEl = document.getElementById('reviewPhotos');
+const reviewPhotoPreviewEl = document.getElementById('reviewPhotoPreview');
+const submitReviewBtn = document.getElementById('submitReview');
 
-// Botão "Adicionar ao carrinho" (apenas para páginas que não são de cores)
-if (!isColorsPage && addToCartBtn) {
-    addToCartBtn.addEventListener('click', () => {
-        if (!currentProduct) return;
-        // Usamos a quantidade apenas quando o produto permite (ex: moedas)
-        let quantity = 1;
-        if (quantityInput && currentProduct && currentProduct.id === 'p05') {
-            quantity = parseInt(quantityInput.value) || 1;
-        }
-        // clonamos profundamente o produto para evitar referências compartilhadas
-        let productToAdd;
+// util: chave do localStorage para reviews
+function reviewsKey(productId) { return `reviews_${productId}`; }
+
+// carrega avaliações do GitHub (ou localStorage como fallback)
+async function loadReviews(productId) {
+    try {
+        const raw = localStorage.getItem(reviewsKey(productId));
+        if (!raw) return [];
+        return JSON.parse(raw) || [];
+    } catch (e) { return []; }
+}
+
+// salva avaliações no GitHub (ou localStorage como fallback)
+async function saveReviews(productId, reviews) {
+    try {
+        localStorage.setItem(reviewsKey(productId), JSON.stringify(reviews));
+        // Tentar salvar no GitHub
+        await saveReviewsToGitHub(productId, reviews);
+    } catch (e) { }
+}
+
+// Função auxiliar para ler arquivo do GitHub
+async function readFileFromGitHub(filePath) {
+    if (!GITHUB_CONFIG || !GITHUB_CONFIG.token) return null;
+    try {
+        const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `token ${GITHUB_CONFIG.token}`,
+                'Accept': 'application/vnd.github.v3+raw'
+            }
+        });
+        if (response.status === 404) return null;
+        if (!response.ok) return null;
+        return await response.text();
+    } catch (e) {
+        console.error('Erro ao ler do GitHub:', e);
+        return null;
+    }
+}
+
+// Função auxiliar para escrever arquivo no GitHub
+async function writeFileToGitHub(filePath, content, message) {
+    if (!GITHUB_CONFIG || !GITHUB_CONFIG.token) return false;
+    try {
+        const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
+
+        // Primeiro, tenta ler o arquivo existente para obter o SHA
+        let sha = null;
         try {
-            productToAdd = JSON.parse(JSON.stringify(currentProduct));
-        } catch (e) {
-            productToAdd = { ...currentProduct };
+            const getResponse = await fetch(url, {
+                headers: {
+                    'Authorization': `token ${GITHUB_CONFIG.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            if (getResponse.ok) {
+                const data = await getResponse.json();
+                sha = data.sha;
+            }
+        } catch (e) { }
+
+        // Agora escreve o arquivo
+        const body = {
+            message: message || 'Atualizar comentários',
+            content: btoa(unescape(encodeURIComponent(content))), // base64 encode
+            branch: GITHUB_CONFIG.branch
+        };
+        if (sha) body.sha = sha;
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${GITHUB_CONFIG.token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+
+        return response.ok;
+    } catch (e) {
+        console.error('Erro ao escrever no GitHub:', e);
+        return false;
+    }
+}
+
+// Salva reviews em arquivo JSON no GitHub
+async function saveReviewsToGitHub(productId, reviews) {
+    if (!GITHUB_CONFIG || !GITHUB_CONFIG.token) return;
+    try {
+        // Lê arquivo existente
+        const existing = await readFileFromGitHub('comentarios.json');
+        let allReviews = {};
+        if (existing) {
+            allReviews = JSON.parse(existing);
         }
-        productToAdd.quantity = quantity;
-        cart.push(productToAdd);
-        updateCartCount();
-        renderCart();
-        modal.classList.remove('show');
+
+        allReviews[productId] = reviews;
+
+        const content = JSON.stringify(allReviews, null, 2);
+        await writeFileToGitHub('comentarios.json', content, `Novo comentário para produto ${productId}`);
+    } catch (e) {
+        console.error('Erro ao salvar reviews no GitHub:', e);
+    }
+}
+
+// Carrega reviews do GitHub (com fallback para localStorage)
+async function loadReviewsFromGitHub(productId) {
+    if (!GITHUB_CONFIG || !GITHUB_CONFIG.token) return loadReviews(productId);
+    try {
+        const content = await readFileFromGitHub('comentarios.json');
+        if (content) {
+            const allReviews = JSON.parse(content);
+            return allReviews[productId] || [];
+        }
+    } catch (e) {
+        console.error('Erro ao carregar reviews do GitHub:', e);
+    }
+    return loadReviews(productId);
+}
+
+// renderiza lista de reviews no modal
+function renderReviews(productId) {
+    if (!reviewsListEl) return;
+
+    // Tenta carregar do GitHub primeiro
+    loadReviewsFromGitHub(productId).then(reviews => {
+        if (!reviews || reviews.length === 0) {
+            reviewsListEl.innerHTML = '<p>Nenhuma avaliação ainda.</p>';
+            return;
+        }
+        reviewsListEl.innerHTML = reviews.map(r => {
+            const imgsHtml = (r.photos || []).map(src => `<img src="${src}" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">`).join('');
+            const date = new Date(r.date).toLocaleString();
+            return `
+                <div class="review-item" style="border-bottom:1px solid #eee;padding:8px 0;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <strong>${r.name || 'Cliente'}</strong>
+                        <span style="color:var(--muted);font-size:13px;">${date}</span>
+                    </div>
+                    <div style="margin:6px 0;color:var(--accent);">Nota: ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+                    <div style="color:var(--muted);font-size:14px;margin-bottom:6px;">${(r.comment || '').replace(/\n/g, '<br>')}</div>
+                    <div style="display:flex;gap:8px;">${imgsHtml}</div>
+                </div>`;
+        }).join('');
+    }).catch(err => {
+        console.error('Erro ao renderizar reviews:', err);
+        reviewsListEl.innerHTML = '<p>Erro ao carregar avaliações.</p>';
     });
+}
+
+// preview de imagens selecionadas
+function previewSelectedPhotos() {
+    if (!reviewPhotoPreviewEl || !reviewPhotosEl) return;
+    reviewPhotoPreviewEl.innerHTML = '';
+    const files = reviewPhotosEl.files;
+    if (!files) return;
+    Array.from(files).slice(0, 6).forEach(file => {
+        const fr = new FileReader();
+        fr.onload = e => {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.cssText = 'width:72px;height:72px;object-fit:cover;border-radius:8px;';
+            reviewPhotoPreviewEl.appendChild(img);
+        };
+        fr.readAsDataURL(file);
+    });
+}
+
+// submete avaliação (chamado pelo botão submit)
+function handleSubmitReview() {
+    if (!currentProduct) return alert('Produto não selecionado');
+    const rating = parseInt(reviewRatingEl.value) || 5;
+    const comment = reviewCommentEl.value || '';
+    const files = reviewPhotosEl.files;
+
+    console.log('handleSubmitReview chamado');
+    console.log('Produto:', currentProduct.id);
+    console.log('Rating:', rating);
+    console.log('Comment:', comment);
+    console.log('Files:', files ? files.length : 0);
+
+    // Se houver fotos, converter para base64; senão, salvar diretamente
+    if (files && files.length > 0) {
+        const readers = Array.from(files).slice(0, 6).map(file => new Promise(resolve => {
+            const fr = new FileReader();
+            fr.onload = e => resolve(e.target.result); // base64 data URL
+            fr.readAsDataURL(file);
+        }));
+        Promise.all(readers).then(results => {
+            saveReviewWithPhotos(results);
+        }).catch(() => alert('Erro ao processar imagens'));
+    } else {
+        saveReviewWithPhotos([]);
+    }
+
+    function saveReviewWithPhotos(photos) {
+        const r = { rating, comment, photos, date: Date.now(), name: '' };
+        const arr = loadReviews(currentProduct.id);
+        arr.unshift(r);
+
+        // Salva localmente
+        saveReviews(currentProduct.id, arr);
+
+        // Renderiza
+        renderReviews(currentProduct.id);
+
+        // Limpa formulário
+        reviewCommentEl.value = '';
+        reviewPhotosEl.value = '';
+        reviewPhotoPreviewEl.innerHTML = '';
+    }
 }
 
 
@@ -322,6 +519,9 @@ function showProductModal(p) {
             }
         }, 0);
     }
+
+    // renderizar avaliações para este produto
+    try { renderReviews(p.id); } catch (e) { }
 }
 
 // Verifica a URL para ?product=ID e abre o modal correspondente
@@ -368,6 +568,39 @@ function updateCartCount() {
 const closeModalBtn = document.getElementById('closeModal');
 if (closeModalBtn) closeModalBtn.onclick = () => modal.classList.remove('show');
 if (modal) modal.onclick = e => { if (e.target === modal) modal.classList.remove('show'); };
+
+// Handler para botão "Adicionar ao Carrinho"
+if (addToCartBtn) {
+    addToCartBtn.onclick = () => {
+        if (!currentProduct) return;
+        let quantity = 1;
+        if (quantityInput && currentProduct.id === 'p05') {
+            quantity = parseInt(quantityInput.value) || 1;
+        }
+        // clonamos profundamente o produto para evitar referências compartilhadas
+        let productToAdd;
+        try {
+            productToAdd = JSON.parse(JSON.stringify(currentProduct));
+        } catch (e) {
+            productToAdd = { ...currentProduct };
+        }
+        productToAdd.quantity = quantity;
+        cart.push(productToAdd);
+        updateCartCount();
+        renderCart();
+        modal.classList.remove('show');
+    };
+}
+
+// Handler para botão "Enviar avaliação"
+if (submitReviewBtn) {
+    submitReviewBtn.onclick = handleSubmitReview;
+}
+
+// Handler para preview de fotos do review
+if (reviewPhotosEl) {
+    reviewPhotosEl.addEventListener('change', previewSelectedPhotos);
+}
 
 
 /*
