@@ -15,6 +15,20 @@ let cart = [];
 const isColorsPage = typeof window.isColorsPage !== 'undefined' ? window.isColorsPage : false;
 const dataFile = isColorsPage ? 'cores.json' : 'produtos.json';
 
+<<<<<<< HEAD
+=======
+// Se você estiver servindo o frontend com Live Server (porta 5500) ou outro servidor
+// estático, as chamadas a `/api` precisam apontar para o backend Node (porta 3000).
+// `API_BASE` resolve automaticamente para o backend quando detecta Live Server.
+const API_BASE = window.API_BASE || (((location.hostname === '127.0.0.1' || location.hostname === 'localhost') && (location.port === '5500' || location.port === '5501')) ? 'http://localhost:3000' : '');
+
+/*
+ * isColorAvailable(p)
+ * - Verifica se uma cor/produto está disponível.
+ * - Aceita múltiplas propriedades de entrada: 'available', 'status', 'price'.
+ * - Retorna true quando parece estar disponível, false caso contrário.
+ */
+>>>>>>> e42df0142a856b029ad232570aed303241629f76
 function isColorAvailable(p) {
     if (p == null) return false;
 
@@ -290,6 +304,14 @@ function showProductModal(p) {
 
     if (modalPrice) modalPrice.textContent = p.price;
 
+    // Prepara a seção de avaliações para este produto
+    try {
+        const reviewProductId = document.getElementById('reviewProductId');
+        if (reviewProductId) reviewProductId.value = p.id;
+    } catch (e) { }
+
+    try { fetchReviews(p.id); } catch (e) { }
+
     // Mostrar campo de quantidade para produtos que permitem (moedas)
     if (quantityContainer && quantityInput) {
         if (p.id === 'p05') { // produto de moedas
@@ -487,6 +509,71 @@ grid.addEventListener('click', (e) => {
 
 // Inicializa carregamento dos produtos
 loadProducts();
+
+// -------------------------------
+// Sistema de avaliações (front-end)
+// -------------------------------
+async function fetchReviews(productId) {
+    const container = document.getElementById('reviewsContainer');
+    if (!container) return;
+    container.textContent = 'Carregando avaliações...';
+    try {
+        const res = await fetch(`${API_BASE}/api/reviews?productId=${encodeURIComponent(productId)}`);
+        if (!res.ok) throw new Error('Erro ao buscar');
+        const reviews = await res.json();
+        renderReviews(reviews);
+    } catch (err) {
+        container.textContent = 'Erro ao carregar avaliações.';
+    }
+}
+
+function renderReviews(reviews) {
+    const container = document.getElementById('reviewsContainer');
+    if (!container) return;
+    if (!reviews || reviews.length === 0) {
+        container.innerHTML = '<p>Nenhuma avaliação ainda.</p>';
+        return;
+    }
+    container.innerHTML = reviews.map(r => {
+        const imgHtml = r.imagePath ? `<img src="${r.imagePath}" alt="foto" style="max-width:100px;display:block;margin-top:6px;"/>` : '';
+        const date = new Date(r.created_at).toLocaleString();
+        return `
+            <div class="review-item" style="border-bottom:1px solid #eee;padding:8px 0;">
+                <strong>${escapeHtml(r.name || 'Anônimo')}</strong> — <em>${r.rating}/5</em>
+                <div style="font-size:13px;color:#666;margin-top:4px;">${escapeHtml(r.text || '')}</div>
+                ${imgHtml}
+                <div style="font-size:11px;color:#999;margin-top:6px;">${date}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Evita injeção simples ao renderizar texto
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/[&<>"']/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": "&#39;" })[s]);
+}
+
+// Handler do envio do formulário de avaliação
+const reviewForm = document.getElementById('reviewForm');
+if (reviewForm) {
+    reviewForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const fd = new FormData(form);
+        const productId = fd.get('productId');
+        try {
+            const res = await fetch(`${API_BASE}/api/reviews`, { method: 'POST', body: fd });
+            if (!res.ok) throw new Error('Erro no envio');
+            // limpar formulário e recarregar avaliações
+            form.reset();
+            fetchReviews(productId);
+            alert('Avaliação enviada — obrigado!');
+        } catch (err) {
+            alert('Erro ao enviar avaliação. Tente novamente.');
+        }
+    });
+}
 
 
 // Botão "Ver mais" dentro do modal (expande/contrai descrição)

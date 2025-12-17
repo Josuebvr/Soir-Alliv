@@ -112,6 +112,31 @@
             <p id="modalDesc"></p>
             <button class="more-btn" id="moreBtn">Ver mais</button>
             <p><strong>Preço:</strong> <span id="modalPrice"></span></p>
+            <!-- Seção de avaliações -->
+            <section id="reviewsSection" style="margin-top:12px;">
+                <h4>Avaliações</h4>
+                <div id="reviewsContainer">Nenhuma avaliação ainda.</div>
+
+                <form id="reviewForm" style="margin-top:8px;" enctype="multipart/form-data">
+                    <input type="hidden" id="reviewProductId" name="productId">
+                    <input id="reviewName" name="name" placeholder="Seu nome" required
+                        style="width:100%;padding:6px;margin:6px 0;" />
+                    <div style="display:flex;gap:8px;align-items:center;margin:6px 0;">
+                        <label for="reviewRating">Nota:</label>
+                        <select id="reviewRating" name="rating" required>
+                            <option value="5">5 - Excelente</option>
+                            <option value="4">4 - Muito bom</option>
+                            <option value="3">3 - Bom</option>
+                            <option value="2">2 - Regular</option>
+                            <option value="1">1 - Ruim</option>
+                        </select>
+                    </div>
+                    <textarea id="reviewText" name="text" placeholder="Descreva o produto" rows="3"
+                        style="width:100%;padding:6px;margin:6px 0;"></textarea>
+                    <input type="file" id="reviewImage" name="image" accept="image/*" style="margin:6px 0;" />
+                    <button type="submit" class="btn primary">Enviar avaliação</button>
+                </form>
+            </section>
             <div id="quantityContainer" style="display: none; margin: 12px 0; align-items: center; gap: 8px;">
                 <label for="quantityInput" style="font-weight: 600;">Quantidade:</label>
                 <input type="number" id="quantityInput" min="1" value="1"
