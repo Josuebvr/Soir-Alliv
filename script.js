@@ -60,6 +60,8 @@ async function loadProducts() {
         }
         products = await res.json();
         render();
+        // se a página foi carregada com ?product=ID, abrir esse produto
+        try { checkUrlProduct(); } catch (e) { }
     } catch (err) {
         console.error('Erro ao carregar produtos:', err);
         if (grid) {
@@ -117,14 +119,15 @@ function render() {
         </div>`;
         }
 
-        const chipText = isColorsPage ? (p.price || 'Disponível') : (p.material ? p.material.toUpperCase() : '');
+        // em vez do chip de material/preço, mostramos um botão de compartilhar
+        const shareButtonHtml = `<button class="btn secondary" data-share-id="${p.id}">Compartilhar</button>`;
 
         el.innerHTML = `
             ${carouselHtml}
             <h3>${p.name}</h3>
             <p>${p.desc}</p>
             <div class="meta">
-                <span class="chip">${chipText}</span>
+                ${shareButtonHtml}
                 <button class="btn secondary" data-id="${p.id}">Ver</button>
             </div>`;
 
@@ -198,8 +201,19 @@ let currentImageIndex = 0;
 if (!isColorsPage && addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
         if (!currentProduct) return;
-        const quantity = quantityInput ? parseInt(quantityInput.value) || 1 : 1;
-        const productToAdd = { ...currentProduct, quantity };
+        // Usamos a quantidade apenas quando o produto permite (ex: moedas)
+        let quantity = 1;
+        if (quantityInput && currentProduct && currentProduct.id === 'p05') {
+            quantity = parseInt(quantityInput.value) || 1;
+        }
+        // clonamos profundamente o produto para evitar referências compartilhadas
+        let productToAdd;
+        try {
+            productToAdd = JSON.parse(JSON.stringify(currentProduct));
+        } catch (e) {
+            productToAdd = { ...currentProduct };
+        }
+        productToAdd.quantity = quantity;
         cart.push(productToAdd);
         updateCartCount();
         renderCart();
@@ -223,9 +237,41 @@ window.addEventListener('scroll', () => {
  * - Busca o produto por data-id e preenche nome, descrição, imagens e preço.
  */
 document.addEventListener('click', e => {
+    // botão de compartilhar
+    const shareBtn = e.target.closest('[data-share-id]');
+    if (shareBtn) {
+        const id = shareBtn.dataset.shareId;
+        try {
+            const u = new URL(window.location.href);
+            u.searchParams.set('product', id);
+            const url = u.toString();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copiado para a área de transferência:\n' + url);
+                }).catch(() => {
+                    prompt('Copie este link:', url);
+                });
+            } else {
+                prompt('Copie este link:', url);
+            }
+        } catch (err) {
+            const base = window.location.href.split('?')[0].split('#')[0];
+            const url = base + '?product=' + encodeURIComponent(id);
+            try { navigator.clipboard.writeText(url); alert('Link copiado:\n' + url); } catch (e) { prompt('Copie este link:', url); }
+        }
+        return;
+    }
+
     const b = e.target.closest('[data-id]');
     if (!b) return;
     const p = products.find(x => x.id === b.dataset.id);
+    if (!p) return;
+    showProductModal(p);
+});
+
+// Mostra o modal e popula com os dados do produto (reutilizável)
+function showProductModal(p) {
+    if (!p) return;
     currentProduct = p;
     currentImageIndex = 0;
     if (modal) modal.classList.add('show');
@@ -257,6 +303,7 @@ document.addEventListener('click', e => {
             quantityInput.value = '1';
         } else {
             quantityContainer.style.display = 'none';
+            quantityInput.value = '1';
         }
     }
 
@@ -275,7 +322,18 @@ document.addEventListener('click', e => {
             }
         }, 0);
     }
-});
+}
+
+// Verifica a URL para ?product=ID e abre o modal correspondente
+function checkUrlProduct() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const pid = params.get('product');
+        if (!pid) return;
+        const p = products.find(x => x.id === pid);
+        if (p) showProductModal(p);
+    } catch (e) { }
+}
 
 
 // Navegação do carrossel dentro do modal (prev/next)
@@ -353,13 +411,13 @@ if (!isColorsPage) {
             const displayName = quantity > 1 ? `${p.name} (x${quantity})` : p.name;
 
             return `
-        <div class="cart-item" data-index="${i}" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:6px 0;">
-          <div style="flex:1;">
-            <span>${displayName}</span>
-            ${quantity > 1 ? `<br><span style="font-size: 12px; color: #666;">Subtotal: R$ ${subtotal.toFixed(2)}</span>` : ''}
-          </div>
-          <button class="remove-item" style="background:none;border:none;color:#f97316;cursor:pointer;">Remover</button>
-        </div>`;
+                <div class="cart-item" data-index="${i}" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:6px 0;">
+                    <div style="flex:1;">
+                        <span>${displayName}</span>
+                        <br><span style="font-size: 12px; color: #645f5fff;">Subtotal: R$ ${subtotal.toFixed(2)}</span>
+                    </div>
+                    <button class="remove-item" style="background:none;border:none;color:#f97316;cursor:pointer;">Remover</button>
+                </div>`;
         }).join('');
 
         const total = cart.reduce((sum, p) => {
