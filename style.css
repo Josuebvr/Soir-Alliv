@@ -366,7 +366,7 @@ main {
 }
 
 .card p {
-    margin: 0;
+    margin: 0 0 10px 0;
     color: var(--muted);
     font-size: 13px;
 }
@@ -494,19 +494,15 @@ footer {
 }
 
 #modalDesc {
-    flex-grow: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
-    -webkit-box-orient: vertical;
     font-size: 15px;
+    white-space: normal;
+    overflow: visible;
+    display: block;
     transition: 0.25s ease;
+    margin-bottom: 8px;
 }
 
 #modalDesc.expanded {
-    -webkit-line-clamp: unset;
-    line-clamp: unset;
     overflow: auto;
 }
 
@@ -542,12 +538,10 @@ footer {
     }
 
     #modalDesc {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
-        line-clamp: 4;
         font-size: 14px;
-        overflow: hidden;
+        white-space: normal;
+        overflow: visible;
+        display: block;
     }
 }
 

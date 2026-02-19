@@ -1,66 +1,82 @@
 [
     {
         "id": "p01",
-        "name": "Caixa para Deck de Commander - Spellbook",
+        "name": "Deck Box - O Grimório",
         "images": "imagens/p01/1.webp,imagens/p01/2.webp,imagens/p01/3.webp",
-        "desc": "A caixa acomoda o seguinte: Zona de Comando que exibe seu Comandante como parte da capa do livro, 100 cartas com sleeves, 50 cartas/tokens sem sleeve ou 20-30 com sleeve, 16x D6 (dados de 16mm), 6x D20 (dados de 22mm) e 4 canetas para quadro branco.",
+        "desc": "Mais que uma caixa, um item de exposição. Com acabamento premium e fechamento magnético seguro, este grimório guarda seu deck e acessórios com a elegância que um grande estrategista exige. Sua partida começa antes mesmo da primeira carta ser comprada.",
         "category": "MTG",
-        "price": "R$150.00"
+        "price": "R$200.00"
     },
     {
         "id": "p02",
-        "name": "Kit Definitivo para Jogadores de DND",
+        "name": "Master Tracker",
         "images": "imagens/p02/1.webp,imagens/p02/2.webp,imagens/p02/3.webp",
-        "desc": "Portas com rastreadores para tudo o que você precisa para uma sessão completa de D&D, sem ficha de personagem extra, tudo pronto para usar, configurado em 6 segundos",
+        "desc": "Dê adeus ao papel e caneta com o rastreador de atributos definitivo para RPG. Esta maleta compacta em estilo industrial organiza seus dados, miniaturas e ferramentas, enquanto os mostradores mecânicos integrados mantêm seus status e habilidades sempre à vista. É a engenharia de precisão elevando sua imersão a um nível profissional em cada sessão.",
         "category": "RPG",
         "price": "R$200.00"
     },
     {
         "id": "p03",
-        "name": "Caixa de Deck MTG Commander com Sideboard",
+        "name": "Deck Box - Altar do Commander",
         "images": "imagens/p03/1.webp,imagens/p03/2.webp,imagens/p03/3.webp",
-        "desc": "Caixa para Deck de MTG. O formato comporta facilmente mais de 100 cards com sleeves e também possui um compartimento lateral para tokens, dados, contadores de vida e etcs",
+        "desc": "Mais que uma Deck box, um verdadeiro altar para o seu commander. Além do visor frontal que coloca sua carta comandante em evidência, também possui um compartimento lateral para tokens, dados e contadores de vida. Personalizável em cores e simbolos de mana únicas ou mesclas híbridas.",
         "category": "MTG",
         "price": "R$90.00"
     },
     {
         "id": "p04",
-        "name": "Conjunto de dados - D20, D12, D10, D8, D6, D4",
+        "name": "Poliedros da Sorte",
         "images": "imagens/p04/1.webp,imagens/p04/2.webp,imagens/p04/3.webp",
-        "desc": "Escolha o tipo gráfico (em relevo ou nivelado) e escolha a cor que mais combina com você.",
+        "desc": "Mais que simples dados, extensões da sua vontade no tabuleiro. Estes poliedros oferecem um equilíbrio estético superior para narrativas onde cada decisão importa. Com a liberdade de escolher a cor de cada face individual do seu set, você não apenas joga o dado, mas manifesta sua própria sorte com a distinção que apenas um jogador de RPG possui.",
         "category": "RPG",
         "price": "R$10.00 o conjunto"
     },
     {
         "id": "p05",
-        "name": "Moedas de ouro de Pirata",
+        "name": "Dobrões de Ouro",
         "images": "imagens/p05/1.webp,imagens/p05/2.webp,imagens/p05/3.webp",
-        "desc": "Escolha a quantidade de moedas de ouro de pirata para suas aventuras de RPG. Cada moeda mede aproximadamente 43 mm de diâmetro e é feita de PLA Dourado. Perfeitas para adicionar um toque autêntico às suas campanhas.",
+        "desc": "Estas peças são o símbolo de conquistas épicas em sua aventura. Cada moeda traz o brilho necessário para representar fortunas acumuladas ou recompensas lendárias no centro da mesa. Sinta o relevo detalhado de um artefato que transforma sua seção de RPG em um momento de pura glória visual.",
         "category": "RPG",
         "price": "R$3.00 a unidade"
     },
     {
         "id": "p06",
-        "name": "Caixa para Deck de Cartas MTG",
+        "name": "Deck Box - Minimalista",
         "images": "imagens/p06/1.webp,imagens/p06/2.webp,imagens/p06/3.webp",
-        "desc": "Comporta mais de 100 cartas com sleeves. Feita para decks de Commander de Magic, mas pode ser facilmente utilizada para qualquer outra coisa. As tampas encaixam-se perfeitamente no lugar e pode ser segurada de cabeça para baixo sem se desmontar ou com as cartas fazendo barulho lá dentro.",
+        "desc": "Uma Deck Box que aposta na simplicidade para entregar uma proteção absoluta e eficaz. Com encaixe preciso e estrutura otimizada, é o item de exposição ideal para o jogador que exige funcionalidade impecável e a elegância de um design limpo.",
         "category": "MTG",
         "price": "R$30.00"
     },
     {
         "id": "p07",
-        "name": "Arca da Aliança",
+        "name": "A Arca da Aliança",
         "images": "imagens/p07/1.webp,imagens/p07/2.webp,imagens/p07/3.webp",
-        "desc": "Uma peça de museu! Ou em seu escritório. Ou talvez na lareira. Quem sabe?! Cabe totalmente a você onde exibir (ou guardar) a Arca da Aliança. Esperançosamente, se você está se dando ao trabalho de comprar isso, não está considerando embalá-la e armazená-la em um depósito.",
+        "desc": "Com detalhes esculpidos sob o brilho do ouro, esta peça simboliza a promessa e a aliança indissolúvel de Deus. É o ícone definitivo para quem deseja materializar a majestade bíblica.",
         "category": "decoracoes",
         "price": "R$70.00"
     },
     {
         "id": "p08",
-        "name": "Caixa para Deck Commander - Satoru Umezawa",
+        "name": "Deck Box - Satoru Umezawa",
         "images": "imagens/p08/1.webp,imagens/p08/2.webp,imagens/p08/3.webp",
-        "desc": "Esta caixa de deck Commander personalizada foi criada com cuidado e precisão para proteger seu precioso material em papelão.",
+        "desc": "Um tributo à arte do Ninjutsu. Esta Deck Box exclusiva, estampada com a face implacável de Satoru Umezawa, possui um visor frontal que exibe sua carta de comandante e um fechamento magnético.",
         "category": "MTG",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p09",
+        "name": "Separador de Livros - Millennium Falcon",
+        "images": "imagens/p09/1.webp,imagens/p09/2.webp,imagens/p09/3.webp",
+        "desc": "Uma janela para uma galáxia muito distante que repousa diretamente em sua estante. Este nicho decorativo captura a essência da Millennium Falcon, criando um efeito de profundidade hipnotizante entre seus livros favoritos. É a peça de exposição definitiva para o leitor de ficção científica.",
+        "category": "decoracoes",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p10",
+        "name": "Tyrannosaurus Illuminatus",
+        "images": "imagens/p10/1.webp,imagens/p10/2.webp,imagens/p10/3.webp",
+        "desc": "Este kit destacável permite que você monte seu próprio esqueleto de Tiranossauro. Ao apagar das luzes, o grande Tyrannosaurus rex revela sua natureza luminescente, emitindo um brilho que torna qualquer ambiente mais divertido.",
+        "category": "decoracoes",
         "price": "R$70.00"
     }
 ]

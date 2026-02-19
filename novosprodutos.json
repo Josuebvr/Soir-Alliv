@@ -1,0 +1,91 @@
+[
+     {
+        "id": "p11",
+        "name": "",
+        "images": "imagens/p11/1.webp,imagens/p11/2.webp,imagens/p11/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p12",
+        "name": "",
+        "images": "imagens/p12/1.webp,imagens/p12/2.webp,imagens/p12/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p13",
+        "name": "",
+        "images": "imagens/p13/1.webp,imagens/p13/2.webp,imagens/p13/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p14",
+        "name": "",
+        "images": "imagens/p14/1.webp,imagens/p14/2.webp,imagens/p14/3.webp",
+        "desc": ".",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p15",
+        "name": "",
+        "images": "imagens/p15/1.webp,imagens/p15/2.webp,imagens/p15/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+        {
+        "id": "p16",
+        "name": "",
+        "images": "imagens/p16/1.webp,imagens/p16/2.webp,imagens/p16/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+            {
+        "id": "p17",
+        "name": "",
+        "images": "imagens/p17/1.webp,imagens/p17/2.webp,imagens/p17/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+               {
+        "id": "p18",
+        "name": "",
+        "images": "imagens/p18/1.webp,imagens/p18/2.webp,imagens/p18/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+               {
+        "id": "p19",
+        "name": "",
+        "images": "imagens/p19/1.webp,imagens/p19/2.webp,imagens/p19/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+               {
+        "id": "p20",
+        "name": "",
+        "images": "imagens/p20/1.webp,imagens/p20/2.webp,imagens/p20/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    },
+               {
+        "id": "p21",
+        "name": "",
+        "images": "imagens/p21/1.webp,imagens/p21/2.webp,imagens/p21/3.webp",
+        "desc": "",
+        "category": "MTG",
+        "price": "R$70.00"
+    }
+
+]
